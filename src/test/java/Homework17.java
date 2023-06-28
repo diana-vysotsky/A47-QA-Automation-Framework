@@ -35,7 +35,7 @@ public class Homework17 extends BaseTest {
     }
 
     public void clickViewAllBtn() throws InterruptedException{
-        WebElement viewAllSearchResult = driver.findElement(By.cssSelector("div.results section.songs h1 button"));
+        WebElement viewAllSearchResult = driver.findElement(By.cssSelector("#searchExcerptsWrapper > div > div > section.songs > h1 > button"));
         viewAllSearchResult.click();
         Thread.sleep(2000);
     }
@@ -47,7 +47,7 @@ public class Homework17 extends BaseTest {
     }
 
     public void clickAddToBtn() throws InterruptedException{
-        WebElement addToBtn = driver.findElement(By.cssSelector("button.btn-add-to"));
+        WebElement addToBtn = driver.findElement(By.cssSelector("#songResultsWrapper > header > div.song-list-controls > span > button.btn-add-to"));
         addToBtn.click();
         Thread.sleep(2000);
     }
@@ -59,7 +59,7 @@ public class Homework17 extends BaseTest {
     }
 
     public String getNotificationText(){
-        WebElement notificationElement = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notificationElement = driver.findElement(By.cssSelector("div.alertify-logs.top.right"));
         return notificationElement.getText();
     }
 
