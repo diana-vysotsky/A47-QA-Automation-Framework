@@ -21,6 +21,13 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[@id='playlists']")
     WebElement newPlaylist;
 
+    @FindBy(css = "img.avatar")
+    WebElement userAvatarIcon;
+
+    public WebElement getUserAvatar() {
+        return findElement(userAvatarIcon);
+    }
+
     public void doubleClickPlaylist(){
         doubleClick(firstPlaylist);
     }

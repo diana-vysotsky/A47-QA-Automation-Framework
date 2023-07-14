@@ -8,8 +8,8 @@ public class PlaylistTests extends BaseTest{
     public void renamePlaylist(){
         String playlistName = "TestPlaylist";
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.login();
         homePage.doubleClickPlaylist();
