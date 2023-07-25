@@ -1,16 +1,9 @@
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 
-import java.time.Duration;
-
 public class LoginTests extends BaseTest {
-
     @Test
     public void LoginValidEmailPasswordTest() {
         LoginPage loginPage = new LoginPage(getDriver());
@@ -20,6 +13,30 @@ public class LoginTests extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
+
+    @Test
+    public void LoginEmptyPasswordTest() {
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.provideEmail("diana.vysotsky@testpro.io");
+
+        loginPage.providePassword("");
+
+        loginPage.clickSubmit();
+
+        Assert.assertTrue(loginPage.isPageOpened());
+    }
+
+    @Test
+    public void LoginInvalidEmailPasswordTest()  {
+        LoginPage loginPage = new LoginPage(getDriver());
+
+        loginPage.provideEmail("diana.vysotsky@testpro.io");
+
+        loginPage.providePassword("1234");
+
+        loginPage.clickSubmit();
+
+        Assert.assertTrue(loginPage.isPageOpened());
+    }
 }
-
-

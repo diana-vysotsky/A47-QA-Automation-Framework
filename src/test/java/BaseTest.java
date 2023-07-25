@@ -46,7 +46,7 @@ public class BaseTest {
 
         wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         actions = new Actions(getDriver());
-        PageFactory.initElements(driver, this);
+        //PageFactory.initElements(driver, this);
 
         url = BaseURL;
         getDriver().get(url);
@@ -86,25 +86,25 @@ public class BaseTest {
         String gridURL = "http://192.168.1.65:4444";
 
         switch (browserName) {
-            case "firefox": // gradle clean test -Dbrowser=firefox
+            case "firefox": // gradle clean test -DbrowserName=firefox
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
 
-            case "MicrosoftEdge": // gradle clean test -Dbrowser=MicrosoftEdge
+            case "MicrosoftEdge": // gradle clean test -DbrowserName=MicrosoftEdge
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 return driver = new EdgeDriver(edgeOptions);
 
-            case "grid-edge": // gradle clean test -Dbrowser=grid-edge
+            case "grid-edge": // gradle clean test -DbrowserName=grid-edge
                 capabilities.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
 
-            case "grid-firefox": // gradle clean test -Dbrowser=grid-firefox
+            case "grid-firefox": // gradle clean test -DbrowserName=grid-firefox
                 capabilities.setCapability("browserName", "firefox");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
 
-            case "grid-chrome": // gradle clean test -Dbrowser=grid-chrome
+            case "grid-chrome": // gradle clean test -DbrowserName=grid-chrome
                 capabilities.setCapability("browserName", "chrome");
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), capabilities);
 
