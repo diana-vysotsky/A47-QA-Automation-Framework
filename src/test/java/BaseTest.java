@@ -10,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+
 
 import java.time.Duration;
 
@@ -19,7 +19,7 @@ public class BaseTest {
     public static WebDriver driver = null;
 
     public static WebDriverWait wait = null;
-    public static String url = null;
+    public static String url = "https://www.arcgis.com/";
 
     @BeforeSuite
     static void setupClass() {
@@ -27,15 +27,15 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL){
+
+    public void launchBrowser(){
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        url = BaseURL;
+        driver.manage().window().maximize();
         driver.get(url);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -46,8 +46,13 @@ public class BaseTest {
         driver.quit();
     }
 
+    public static void clickSignIn(){
+        WebElement signInButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.esri-header-account-control")));
+        signInButton.click();
+    }
+
     public static void provideEmail(String email){
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='email']")));
+        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='username']")));
 
         emailField.click();
         emailField.clear();
@@ -65,4 +70,6 @@ public class BaseTest {
         WebElement submitButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
         submitButton.click();
     }
+
+
 }
