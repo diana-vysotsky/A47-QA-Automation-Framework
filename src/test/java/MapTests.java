@@ -23,7 +23,7 @@ public class MapTests extends BaseTest{
 
         openNavigationMap();
 
-        //Verify the map is open and title MY Map is visible
+        //Verify the map is open and title My Map is visible
         String pageTitle = driver.getTitle();
         Assert.assertTrue(pageTitle.contains("My Map"));
     }
@@ -33,27 +33,34 @@ public class MapTests extends BaseTest{
 
         openNavigationMap();
 
+        //Find scale bar on a map
         WebElement scaleBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.esriScalebarLabel.esriScalebarFirstNumber")));
 
-        // Get the initial scale bar text
+        //Get the initial scale bar text value
         String initialScaleBarText = scaleBar.getText();
 
+        //Zoom in a map
         zoomIn();
 
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(scaleBar, initialScaleBarText)));
 
+        //Get scale bar tex value after zoom in action
         String zoomedInScaleBarText = scaleBar.getText();
 
+        //Verify scale bar value changed and zoom in was successful
         Assert.assertNotEquals(initialScaleBarText, zoomedInScaleBarText);
 
+        //Zoom out a map
         zoomOut();
 
         wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(scaleBar, zoomedInScaleBarText)));
 
+        //Get scale bar text value after zoom out action
         String zoomedOutScaleBarText = scaleBar.getText();
 
+        //Verify scale bar value changed and zoom out was successful
         Assert.assertNotEquals(zoomedInScaleBarText, zoomedOutScaleBarText);
-        
+
     }
 
       @Test
