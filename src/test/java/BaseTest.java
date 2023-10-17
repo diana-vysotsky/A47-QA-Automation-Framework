@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
 
 public class BaseTest {
+
     public static WebDriver driver = null;
 
     public static WebDriverWait wait = null;
@@ -29,6 +30,7 @@ public class BaseTest {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
+
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
