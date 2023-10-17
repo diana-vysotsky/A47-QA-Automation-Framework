@@ -10,20 +10,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import java.time.Duration;
-
 public class BaseTest {
 
     public static WebDriver driver = null;
 
     public static WebDriverWait wait = null;
     public static String url = "https://www.arcgis.com/";
-
     @BeforeSuite
     //Set up the ChromeDriver using WebDriverManager
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
     }
-
     @BeforeMethod
     // Set up ChromeDriver and open the browser
     public void launchBrowser(){
@@ -39,7 +36,6 @@ public class BaseTest {
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
-
     @AfterMethod
     // Close the browser after the test
     public void closeBrowser(){
