@@ -1,24 +1,23 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class MapTests extends BaseTest{
+public class MapTests extends BaseTest {
     @Test
 
-    public void testSignInValidEmailPassword() throws InterruptedException{
+    public void testSignInValidEmailPassword() throws InterruptedException {
         signIn();
 
         //Verify that sign in was successful and account menu button is visible
         WebElement accountMenuButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button#esri-header-account-control")));
         Assert.assertTrue(accountMenuButton.isDisplayed());
     }
+
     @Test
 
-    public void openMap() throws InterruptedException{
+    public void testOpenMap() throws InterruptedException {
         signIn();
 
         openNavigationMap();
@@ -27,8 +26,10 @@ public class MapTests extends BaseTest{
         String pageTitle = driver.getTitle();
         Assert.assertTrue(pageTitle.contains("My Map"));
     }
+
     @Test
-    public void zoomMap() throws InterruptedException{
+
+    public void testZoomMap() throws InterruptedException {
         signIn();
 
         openNavigationMap();
@@ -63,11 +64,13 @@ public class MapTests extends BaseTest{
 
     }
 
-      @Test
-      public void testCityDistanceMeasurement() throws InterruptedException {
-
-
-      }
-
 }
+
+
+
+
+
+
+
+
 

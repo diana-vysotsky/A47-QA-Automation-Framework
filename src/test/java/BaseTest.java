@@ -9,13 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
-
-
 import java.time.Duration;
 
 public class BaseTest {
-
     public static WebDriver driver = null;
 
     public static WebDriverWait wait = null;
@@ -33,7 +29,6 @@ public class BaseTest {
         //Added ChromeOptions argument below to fix websocket error
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -134,10 +129,5 @@ public class BaseTest {
         WebElement zoomOutButton = driver.findElement(By.cssSelector("div.esriSimpleSliderDecrementButton"));
         wait.until(ExpectedConditions.elementToBeClickable(zoomOutButton)).click();
     }
-
-
-
-
-
 
 }
